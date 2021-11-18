@@ -50,7 +50,7 @@ class PgSqlAppStatus(service.BaseDbStatus):
         """Check database service status."""
         status = docker_util.get_container_status(self.docker_client)
         if status == "running":
-            cmd = "psql -U postgres -c 'select 1;'"
+            cmd = "sleep 10; psql -U postgres -c 'select 1;'"
             try:
                 docker_util.run_command(self.docker_client, cmd)
                 return service_status.ServiceStatuses.HEALTHY
