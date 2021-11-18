@@ -29,6 +29,8 @@ from trove.guestagent.datastore.postgres import query
 from trove.guestagent.utils import docker as docker_util
 from trove.instance import service_status
 
+from time import sleep
+
 LOG = logging.getLogger(__name__)
 CONF = cfg.CONF
 
@@ -50,7 +52,8 @@ class PgSqlAppStatus(service.BaseDbStatus):
         """Check database service status."""
         status = docker_util.get_container_status(self.docker_client)
         if status == "running":
-            cmd = "sleep 10; psql -U postgres -c 'select 1;'"
+            sleep(10)
+            cmd = "psql -U postgres -c 'select 1;'"
             try:
                 docker_util.run_command(self.docker_client, cmd)
                 return service_status.ServiceStatuses.HEALTHY
