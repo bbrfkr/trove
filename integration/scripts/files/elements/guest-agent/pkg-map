@@ -1,7 +1,7 @@
 {
   "family": {
     "redhat": {
-      "guest-agent": "openstack-trove-guest-agent",
+      "guest-agent": "git+https://github.com/bbrfkr/trove.git@stable/wallaby",
       "netcat-openbsd": "nmap-ncat",
       "netbase": "",
       "cron": "",
